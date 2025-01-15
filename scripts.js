@@ -1,7 +1,6 @@
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 
-// Check if canvas element exists before accessing its context
 if (canvas) {
   const context = canvas.getContext('2d');
 
@@ -14,12 +13,14 @@ if (canvas) {
       console.error('Erro ao acessar a câmera:', err);
     });
 
+  // Define the capture function within the scope
   function capture() {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    // Disparar um evento para o módulo de processamento
     document.dispatchEvent(new CustomEvent('imageCaptured', { detail: canvas.toDataURL() }));
   }
+
+  // Attach the capture function to the button's onclick event
+  document.getElementById('captureButton').onclick = capture; 
 } else {
   console.error("Canvas element not found!");
 }
-
