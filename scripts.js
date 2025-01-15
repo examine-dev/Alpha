@@ -1,26 +1,14 @@
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-
-if (canvas) {
-  const context = canvas.getContext('2d');
-
-  navigator.mediaDevices.getUserMedia({ video: true })
+// Get the video element
+const videoElement = document.getElementById('videoElement');// Define media constraints
+const constraints = {
+    video: true,
+    audio: true
+};// Request user media
+navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
-      video.srcObject = stream;
-      video.play();
+        // Attach the media stream to the video element
+        videoElement.srcObject = stream;
     })
-    .catch(err => {
-      console.error('Erro ao acessar a câmera:', err);
+    .catch(error => {
+        console.error('Error accessing media devices.', error);
     });
-
-  // Define the capture function within the scope
-  function capture() {
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    document.dispatchEvent(new CustomEvent('imageCaptured', { detail: canvas.toDataURL() }));
-  }
-
-  // Attach the capture function to the button's onclick event
-  document.getElementById('captureButton').onclick = capture; 
-} else {
-  console.error("Canvas element not found!");
-}
