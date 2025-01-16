@@ -5,13 +5,13 @@
     }
   
     video {
-        width: 100%;
+        width: 50%;
         height: auto;
     }
   
     canvas {
-        width: 100%;
-        max-width: 100%;
+        width: 50%;
+        max-width: 75%;
     }
   
     button#snap {
