@@ -1,38 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Media Capture and Streams API Example</title>
-
-        <!-- StyleSheet file-->
-        <link rel="stylesheet" href="styles.css">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo: Corretor de Gabaritos</title>
+    <link rel="stylesheet" href="css/corrigir.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Teste</h1>
         
-        <!--Js code file-->
-        <script src="scripts.js" async></script>
-        <script src="image.js" ></script>
-        
-    </head>
-    <body>
-        <div class="container">
-            <h1>WebCam Preview and Image Capture</h1>
-            <p>       <span id="errorMsg"></span>     </p>
-            
-            <!-- Stream video via webcam -->
-            <div class="video-wrap">
-                <video id="video" playsinline autoplay>Video stream not available.</video> 
-                <canvas id="canvasVideo"></canvas>       
-            </div>
+        <div class="camera-container">
+            <video id="preview" autoplay playsinline></video>
+            <div class="guia-gabarito"></div> </div>
 
-            <!--Trigger canvas Web Api-->
-            <div class="controller">
-                <button id="snap">Capture</button>
-            </div>
 
-            <!--Webcam video snapshot-->
-            <canvas id="canvas" width="640" height="480"> </canvas>
-            
+        <button id="btn-capturar" class="btn-principal">📸 Processar</button>
+            <div class="config-group">
+      <label>Chave da API</label>
+      <input type="text" id="api-key" placeholder="sk-ant-..." autocomplete="off">
+    </div>
+
+        <div id="status" class="status-msg">Aponte para o gabarito</div>
+
+        <div class="result-card" id="result-card" style="display: none;">
+            <h2>Nota: <span id="nota-valor">--</span></h2>
+            <pre id="json-output"></pre>
         </div>
 
-    </body>
+        <canvas id="canvas-processamento" style="display: none;"></canvas>
+    </div>
+    <script src="js/corrigir.js"></script>
+</body>
 </html>
